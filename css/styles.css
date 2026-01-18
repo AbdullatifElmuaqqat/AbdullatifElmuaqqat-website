@@ -5006,7 +5006,7 @@ figcaption {
   position: absolute;
   inset: auto 0% 60px;
   font-size: 22px;
-  margin-bottom: -25px;
+  margin-bottom: -20px;
 }
 
 .marquee-logos {
@@ -6588,104 +6588,178 @@ figcaption {
 .light-mode .skills-section *{
   color:#121212 !important;
 }
-
-#systems .wrap-work-slider {
+/* Keep slider visible + clean */
+#Methodology .wrap-work-slider {
   opacity: 1 !important;
   filter: none !important;
 }
 
-#systems .mask-testimonial.w-slider-mask{
-  width: min(500px, 90vw) !important;
-  max-width: none;          
+/* Mask sizing stays the same, but we’ll make it feel more centered */
+#Methodology .mask-testimonial.w-slider-mask{
+  width: min(520px, 92vw) !important;
+  max-width: none;
   margin: 0 auto;
   border: 0;
   box-shadow: none;
   overflow: visible;
 }
 
-#systems .wrap-card-testimonial{
+/* Wrapper clean */
+#Methodology .wrap-card-testimonial{
   background: transparent;
   border: 0;
   overflow: visible;
+  padding: 10px 0; /* gives breathing room for glow */
 }
 
-#systems .card-testimonial.systems-card{
-  width: min(500px, 90vw) !important;
-  height: auto !important;      
-  padding: 40px !important;
-  border-radius: 22px !important;
+/* Main card layout */
+#Methodology .card-testimonial.systems-card{
+  width: min(520px, 92vw) !important;
+  height: auto !important;
+  padding: 36px !important;
+  border-radius: 24px !important;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
 }
 
-/* 5) Dark mode look */
-#systems .card-testimonial.systems-card{
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(12, 14, 18, 0.72);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 22px 70px rgba(0,0,0,0.45);
+/* Glass + depth + nicer border */
+#Methodology .card-testimonial.systems-card{
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 18, 26, 0.78) 0%,
+    rgba(10, 12, 18, 0.62) 100%
+  );
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
-/* 6) Typography */
-#systems .systems-body{
-  font-size: 22px;
-  line-height: 1.55;
+/* Subtle “premium” glow edge (no HTML needed) */
+#Methodology .card-testimonial.systems-card::before{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: radial-gradient(
+      600px 240px at 20% 10%,
+      rgba(120,160,255,0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      500px 220px at 80% 0%,
+      rgba(110,220,255,0.14),
+      transparent 55%
+    );
+  filter: blur(18px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Fine texture highlight */
+#Methodology .card-testimonial.systems-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    900px 300px at 50% -10%,
+    rgba(255,255,255,0.08),
+    transparent 55%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Hover = slight lift (feels expensive) */
+#Methodology .card-testimonial.systems-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 26px 80px rgba(0,0,0,0.52),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Typography: cleaner, more readable */
+#Methodology .systems-body{
+  font-size: 18px;         /* 22 -> 18 reads nicer on 500px */
+  line-height: 1.65;
   letter-spacing: -0.01em;
-  opacity: 0.95;
+  opacity: 0.96;
+
+  /* better paragraph rhythm */
+  padding-right: 4px;
 }
 
-#systems .systems-footer{
+/* Footer spacing */
+#Methodology .systems-footer{
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
-#systems .systems-step{
-  width: 62px;
+/* Step pill: nicer glass + tiny glow */
+#Methodology .systems-step{
+  width: 64px;
   height: 44px;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.04);
-  font-size: 14px;
-  letter-spacing: 0.08em;
+
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  opacity: 0.9;
 }
 
-#systems .systems-title{
+/* Title/subtitle hierarchy */
+#Methodology .systems-title{
   font-size: 18px;
   font-weight: 650;
+  letter-spacing: -0.01em;
 }
 
-#systems .systems-subtitle{
+#Methodology .systems-subtitle{
   margin-top: 4px;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.65;
 }
 
-#systems .card-testimonial-bg.systems-bg{
+/* Hide background layer */
+#Methodology .card-testimonial-bg.systems-bg{
   display: none !important;
 }
 
-.light-mode #systems .card-testimonial.systems-card{
+
+.light-mode #Methodology .card-testimonial.systems-card{
   background: rgba(255,255,255,0.86);
   border: 1px solid rgba(0,0,0,0.10);
   box-shadow: 0 18px 55px rgba(0,0,0,0.12);
   color: #121212;
 }
-.light-mode #systems .systems-body,
-.light-mode #systems .systems-title,
-.light-mode #systems .systems-subtitle{
+.light-mode #Methodology .systems-body,
+.light-mode #Methodology .systems-title,
+.light-mode #Methodology .systems-subtitle{
   color: #121212;
 }
-.light-mode #systems .systems-subtitle{
+.light-mode #Methodology .systems-subtitle{
   opacity: 0.70;
 }
-.light-mode #systems .systems-step{
+.light-mode #Methodology .systems-step{
   border: 1px solid rgba(0,0,0,0.12);
   background: rgba(0,0,0,0.03);
 }
@@ -7214,3 +7288,92 @@ figcaption {
     z-index: 9999;
   }
 </style>
+
+
+
+/* Make dots visible + match your glow */
+#Methodology .w-slider-nav .w-slider-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  opacity: 0.45;
+  transform: scale(0.95);
+  transition: transform 200ms ease, opacity 200ms ease, box-shadow 200ms ease;
+}
+
+#Methodology .w-slider-nav .w-slider-dot.w-active{
+  opacity: 1;
+  transform: scale(1.2);
+  box-shadow:
+    0 0 0 1px rgba(120,160,255,0.22),
+    0 0 18px rgba(120,160,255,0.65),
+    0 0 44px rgba(120,160,255,0.35);
+}
+
+/* Base card border/glow (subtle) */
+#Methodology .card-testimonial.systems-card{
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Hover glow so it always “reacts” */
+#Methodology .card-testimonial.systems-card:hover{
+  box-shadow:
+    0 26px 80px rgba(0,0,0,0.52),
+    0 0 0 1px rgba(120,160,255,0.16),
+    0 0 34px rgba(120,160,255,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+
+@supports selector(:has(*)) {
+
+  /* Slide 1 selected */
+  #Methodology .slider:has(.w-slider-dot.w-active:nth-child(1))
+  .w-slider-mask .w-slide:nth-child(1) .card-testimonial.systems-card{
+    border-color: rgba(120,160,255,0.40) !important;
+    box-shadow:
+      0 28px 90px rgba(0,0,0,0.58),
+      0 0 0 1px rgba(120,160,255,0.22),
+      0 0 46px rgba(120,160,255,0.30),
+      0 0 120px rgba(90,140,255,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  }
+
+  /* Slide 2 selected */
+  #Methodology .slider:has(.w-slider-dot.w-active:nth-child(2))
+  .w-slider-mask .w-slide:nth-child(2) .card-testimonial.systems-card{
+    border-color: rgba(120,160,255,0.40) !important;
+    box-shadow:
+      0 28px 90px rgba(0,0,0,0.58),
+      0 0 0 1px rgba(120,160,255,0.22),
+      0 0 46px rgba(120,160,255,0.30),
+      0 0 120px rgba(90,140,255,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  }
+
+  /* Slide 3 selected */
+  #Methodology .slider:has(.w-slider-dot.w-active:nth-child(3))
+  .w-slider-mask .w-slide:nth-child(3) .card-testimonial.systems-card{
+    border-color: rgba(120,160,255,0.40) !important;
+    box-shadow:
+      0 28px 90px rgba(0,0,0,0.58),
+      0 0 0 1px rgba(120,160,255,0.22),
+      0 0 46px rgba(120,160,255,0.30),
+      0 0 120px rgba(90,140,255,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  }
+
+  /* Slide 4 selected */
+  #Methodology .slider:has(.w-slider-dot.w-active:nth-child(4))
+  .w-slider-mask .w-slide:nth-child(4) .card-testimonial.systems-card{
+    border-color: rgba(120,160,255,0.40) !important;
+    box-shadow:
+      0 28px 90px rgba(0,0,0,0.58),
+      0 0 0 1px rgba(120,160,255,0.22),
+      0 0 46px rgba(120,160,255,0.30),
+      0 0 120px rgba(90,140,255,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  }
+}

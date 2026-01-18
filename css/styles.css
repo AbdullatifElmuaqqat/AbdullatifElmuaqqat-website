@@ -1,12 +1,13 @@
-html {
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  font-family: sans-serif;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+img, video, svg {
+  max-width: 100%;
+  height: auto;
 }
 
-body {
-  margin: 0;
-}
+
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
@@ -7375,5 +7376,13 @@ figcaption {
       0 0 46px rgba(120,160,255,0.30),
       0 0 120px rgba(90,140,255,0.18),
       inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  #Methodology .card-testimonial.systems-card:hover,
+  #systems .card-testimonial.systems-card:hover {
+    transform: translateY(-6px);
   }
 }

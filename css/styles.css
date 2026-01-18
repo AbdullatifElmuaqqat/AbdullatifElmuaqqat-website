@@ -1080,6 +1080,7 @@ textarea.w-input, textarea.w-select {
   width: 0;
   height: 0;
   position: absolute;
+  top: 50%;
   left: 0;
 }
 
@@ -1588,11 +1589,14 @@ textarea.w-input, textarea.w-select {
 
 .w-lightbox-thumbnail .w-lightbox-tall {
   width: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .w-lightbox-thumbnail .w-lightbox-wide {
   height: 100%;
   left: 50%;
+  transform: translate(-50%);
 }
 
 .w-lightbox-spinner {
@@ -1605,6 +1609,7 @@ textarea.w-input, textarea.w-select {
   margin-left: -20px;
   animation: .8s linear infinite spin;
   position: absolute;
+  top: 50%;
   left: 50%;
 }
 
@@ -7204,6 +7209,7 @@ html, body{
 .resume-dialog{
   position: absolute;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: min(1100px, calc(100vw - 40px));
   height: min(82vh, 860px);
@@ -7485,7 +7491,7 @@ img, video {
 @media screen and (max-width: 767px){
   .section.hero-section{
     min-height: auto;
-    padding-top: 88px; /* give room for fixed nav */
+    padding-top: 88px; 
     padding-bottom: 56px;
   }
 
@@ -7495,7 +7501,6 @@ img, video {
     padding-top: 6px;
   }
 
-  /* Make avatar participate in layout (no absolute overlap) */
   .hero-avatar{
     position: relative;
     left: auto;
@@ -7508,7 +7513,6 @@ img, video {
     margin: 18px auto 0;
   }
 
-  /* Keep the big background name from taking over */
   .text-h0{
     font-size: clamp(44px, 12vw, 72px);
     line-height: 1.0;
@@ -7541,7 +7545,6 @@ img, video {
 }
 
 .project-modal__panel{
-  /* keep the panel inside the viewport */
   max-height: calc(100dvh - 64px);
   margin: 32px auto;
 }
@@ -7559,7 +7562,6 @@ img, video {
   padding-right: 8px; /* prevents text touching scrollbar */
 }
 
-/* Mobile: stack media on top and scroll the content */
 @media screen and (max-width: 767px){
   .project-modal__panel{
     width: min(94vw, 720px);
@@ -7582,14 +7584,12 @@ img, video {
   }
 }
 
-/* Fix invalid alpha value if present in your earlier box-shadow */
 .project-modal__panel{
   box-shadow: 0 16px 60px rgba(0,0,0,0.45);
 }
 
 
 
-/* Prevent sideways scroll on phones (common "messy" symptom) */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
@@ -7600,13 +7600,11 @@ img, video {
   height: auto;
 }
 
-/* --- HERO responsive tweaks (fix messy mobile layout) --- */
 @media screen and (max-width: 767px){
-  /* Make hero flow naturally instead of absolute stacking */
   .master-hero{
     justify-content: flex-start;
     gap: 28px;
-    padding-top: 84px; /* leaves room under the navbar */
+    padding-top: 84px; 
   }
 
   .hero-avatar{
@@ -7633,7 +7631,6 @@ img, video {
   }
 }
 
-/* --- Project/work "big card" modal: allow scrolling --- */
 .project-modal{
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -7642,7 +7639,6 @@ img, video {
 .project-modal__panel{
   max-height: calc(100dvh - 48px);
   margin: 24px auto;
-  /* Fix invalid alpha values from earlier rules */
   box-shadow: 0 30px 90px rgba(0,0,0,0.45);
 }
 
@@ -7664,7 +7660,6 @@ img, video {
     border-radius: 18px;
   }
 
-  /* Stack media on top, content scrolls underneath */
   .project-modal__grid{
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
@@ -7771,19 +7766,16 @@ html, body{ overflow-x: hidden; }
   max-height: calc(100vh - 24px);
 }
 
-/* Let the content column scroll */
 .project-modal__content{
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
 
-/* If media is huge, constrain it so content still has room */
 .project-modal__media{
   max-height: calc(100vh - 24px);
 }
 
-/* Mobile: switch the modal to a single column that can scroll */
 @media (max-width: 767px){
   .project-modal__panel{
     width: calc(100% - 24px);
@@ -7800,7 +7792,7 @@ html, body{ overflow-x: hidden; }
 
   .project-modal__content{
     flex: 1 1 auto;
-    min-height: 0; /* critical for flex scrolling */
+    min-height: 0;
   }
 }
 
@@ -7817,7 +7809,6 @@ html, body{ overflow-x: hidden; }
     padding: 10px 12px;
   }
 
-  /* Make icon buttons a bit smaller so the bar doesn't feel huge */
   .button-nav{
     width: 20px;
     height: 20px;
@@ -7844,6 +7835,46 @@ html, body{ overflow-x: hidden; }
   }
 }
 
+
+
+@media (max-width: 768px) {
+
+  .hero-content,
+  .hero-text {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .hero-subtitle,
+  .hero-role,
+  .hero-description {
+    font-size: 16px !important;
+    line-height: 1.5;
+    margin-top: 12px;
+    opacity: 0.9;
+  }
+
+  .hero-name,
+  .background-name,
+  .name-bg {
+    font-size: 40px !important;
+    line-height: 1.1;
+    opacity: 0.07; 
+    transform: none !important;
+  }
+
+  .hero-avatar {
+    margin-bottom: 20px;
+  }
+
+  .hero-section,
+  .hero-wrapper {
+    min-height: unset;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
 @media (max-width: 767px){
 
   .wrap-marquee{
@@ -7851,21 +7882,17 @@ html, body{ overflow-x: hidden; }
     filter: blur(0.4px);
   }
   .text-h0{
-    font-size: 56px;  
+    font-size: 56px;
     line-height: 1;
     opacity: 0.25;
   }
 
   .hero-avatar{
-    position: relative;    
+    position: relative;     
     top: auto;
     left: auto;
-    margin: 110px auto 20px;
- width: 160px;
-    height: 160px;
-    margin-top: 16px;
+    margin: 110px auto 18px;
   }
- 
 
   .text-h6{
     margin-top: 16px;

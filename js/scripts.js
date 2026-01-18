@@ -18131,8 +18131,7 @@
   i = a.O(i);
 })();
 
-/* Site scripts (no Webflow dependencies) */
-
+/** */
 document.addEventListener("DOMContentLoaded", () => {
   // Current year
   const y = document.getElementById("year");
@@ -18411,7 +18410,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const open = () => {
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
-      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.overflow = "";
       zoom = 1;
       applyZoom();
     };

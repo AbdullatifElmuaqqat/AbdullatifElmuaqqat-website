@@ -6765,6 +6765,100 @@ figcaption {
   background: rgba(0,0,0,0.03);
 }
 
+/* =========================================================
+   Mobile + modal scroll fixes (added)
+   ========================================================= */
+
+/* Prevent accidental horizontal scroll on phones */
+html, body{
+  overflow-x: hidden;
+}
+
+/* ---------------------------
+   Nav: reduce “giant” top bar
+   --------------------------- */
+@media (max-width: 479px){
+  /* Your top floating nav wrapper */
+  .master-navigation{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 0;
+    top: 0;
+  }
+
+  /* Keep the nav pill from being too wide/tall */
+  .navbar{
+    width: 100%;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  /* Tighten avatar + icon buttons a bit */
+  .nav-profile-image{
+    width: 44px;
+    height: 44px;
+  }
+  .toggle-section{
+    gap: 10px;
+  }
+  .toggle-container,
+  .menu-button{
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ---------------------------
+   Project modal: allow scroll
+   --------------------------- */
+
+/* Fullscreen overlay should always be scrollable */
+.project-modal{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Panel must fit viewport and allow internal scrolling */
+.project-modal__panel{
+  max-height: 90vh;
+}
+
+/* Let the text column scroll when content is long */
+.project-modal__content{
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Ensure media doesn’t force the panel taller than the viewport */
+.project-modal__media{
+  max-height: 90vh;
+}
+.project-modal__media img{
+  max-height: 90vh;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Mobile: single column panel that scrolls naturally */
+@media (max-width: 767px){
+  .project-modal__panel{
+    width: calc(100% - 24px);
+    margin: 12px;
+    max-height: calc(100vh - 24px);
+  }
+  .project-modal__content{
+    max-height: none;
+  }
+  .project-modal__media,
+  .project-modal__media img{
+    max-height: 45vh;
+  }
+}
+
 .connect-content {
   width: 100%;
 }
@@ -7607,5 +7701,170 @@ img, video {
 
   .project-modal__content{
     max-height: none;
+  }
+}
+
+/* =========================================================
+   FINAL OVERRIDES (mobile + modal)
+   Put at very bottom so it wins.
+   ========================================================= */
+
+/* Prevent accidental horizontal scroll */
+html, body{ overflow-x: hidden; }
+
+/* --- Project modal: ALWAYS allow scrolling inside the modal --- */
+.project-modal{
+  /* iOS: allow vertical panning inside fixed overlays */
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+.project-modal__panel{
+  /* Make sure the panel fits the viewport */
+  max-height: calc(100vh - 24px);
+}
+
+/* The content area is the scroll container */
+.project-modal__content{
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 24px);
+}
+
+/* If your panel is a grid with media + content, keep media from forcing overflow */
+.project-modal__media,
+.project-modal__media img,
+.project-modal__media video{
+  max-height: 45vh;
+}
+
+@media (min-width: 768px){
+  /* On desktop, let the panel be tall but keep content scrollable */
+  .project-modal__panel{ max-height: 92vh; }
+  .project-modal__content{ max-height: 92vh; }
+  .project-modal__media,
+  .project-modal__media img,
+  .project-modal__media video{ max-height: 92vh; }
+}
+
+@media (max-width: 767px){
+  .project-modal{ padding: 12px; }
+  .project-modal__panel{
+    width: 100% !important;
+    margin: 0 auto !important;
+    border-radius: 18px;
+  }
+  .project-modal__content{
+    padding: 16px;
+  }
+}
+
+/* --- Compact the top nav on small screens --- */
+@media (max-width: 479px){
+  .master-navigation{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 0;
+  }
+  .navbar{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 12px !important;
+    border-radius: 18px;
+  }
+  /* Reduce avatar and icon buttons */
+  .wrap-logo-avatar{ width: 52px; height: 40px; }
+  .logo-avatar{ width: 40px; height: 40px; }
+  .wrap-dark-mode{ width: 44px; height: 44px; }
+  .menu-button{ width: 54px; height: 44px; }
+
+  /* Avoid huge hero spacing on phones */
+  .hero-home{ min-height: auto !important; }
+  .heading-h0{ font-size: clamp(44px, 12vw, 72px) !important; }
+}
+
+/* =========================================================
+   FINAL OVERRIDES (mobile + modal) — keep at bottom
+   ========================================================= */
+
+/* Prevent accidental horizontal scroll */
+html, body{ overflow-x: hidden; }
+
+/* ------------------------------
+   Project modal scroll fix
+   - Make sure modal can scroll on iOS + desktop
+   ------------------------------ */
+.project-modal{
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+/* Ensure the panel is never taller than the viewport */
+.project-modal__panel{
+  max-height: calc(100vh - 24px);
+}
+
+/* Let the content column scroll */
+.project-modal__content{
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* If media is huge, constrain it so content still has room */
+.project-modal__media{
+  max-height: calc(100vh - 24px);
+}
+
+/* Mobile: switch the modal to a single column that can scroll */
+@media (max-width: 767px){
+  .project-modal__panel{
+    width: calc(100% - 24px);
+    margin: 12px auto;
+    max-height: calc(100vh - 24px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-modal__media{
+    flex: 0 0 auto;
+    max-height: 42vh;
+  }
+
+  .project-modal__content{
+    flex: 1 1 auto;
+    min-height: 0; /* critical for flex scrolling */
+  }
+}
+
+/* ------------------------------
+   Compact navbar on phones
+   (your master-navigation currently has 48px padding)
+   ------------------------------ */
+@media (max-width: 479px){
+  .master-navigation{
+    padding-left: 14px;
+    padding-right: 14px;
+    top: 12px;
+  }
+
+  .navbar{
+    width: 100%;
+    max-width: calc(100% - 28px);
+    padding: 10px 12px;
+  }
+
+  /* Make icon buttons a bit smaller so the bar doesn't feel huge */
+  .button-nav{
+    width: 46px;
+    height: 46px;
+  }
+
+  /* If your logo/avatar is large, cap it */
+  .profile-image,
+  .nav-brand img{
+    max-width: 46px;
+    max-height: 46px;
   }
 }

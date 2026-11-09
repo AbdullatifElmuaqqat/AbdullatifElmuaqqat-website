@@ -43,9 +43,16 @@ const say = (msg) => { toast.textContent = msg; toast.classList.add('is-on'); cl
 let soundOn = false;
 try { soundOn = localStorage.getItem('sound') === 'on'; } catch {}
 let actx;
+// Phones create the audio engine paused and only start it from a tap; iPhones also need the
+// "playback" session to play through the silent switch (iOS 17+).
+const wakeAudio = () => {
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch {}
+  actx ||= new (window.AudioContext || window.webkitAudioContext)();
+  if (actx.state !== 'running') actx.resume();
+};
 const tone = (f, d = .08, type = 'square', v = .05, slide = 0, at = 0) => {
   if (!soundOn) return;
-  actx ||= new AudioContext();
+  wakeAudio();
   const t = actx.currentTime + at, o = actx.createOscillator(), g = actx.createGain();
   o.type = type; o.frequency.setValueAtTime(f, t);
   if (slide) o.frequency.exponentialRampToValueAtTime(slide, t + d);
@@ -68,6 +75,8 @@ soundBtn.addEventListener('click', () => {
 });
 paintSound();
 document.addEventListener('click', (e) => { if (e.target.closest('button:not([data-sound]), a')) sfx.blip(); });
+// Any first touch wakes the engine too, so a remembered "sound on" works on the next visit.
+addEventListener('pointerdown', () => { if (soundOn) wakeAudio(); }, { passive: true });
 
 // Companion sprite: idle, typing, waving or thinking, with a speech bubble
 const buddy = $('.buddy .sprite');
